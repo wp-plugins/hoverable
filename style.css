@@ -1,0 +1,125 @@
+a.facebox {
+    cursor: help;
+    text-decoration: none;
+    border-bottom: 1px dashed #888;
+}
+.hov-add, .hov-remove {
+    cursor: pointer;
+}
+.hov-modal {
+    display: none;
+}
+.hov-template {
+    display: none;
+}
+.hov-item {
+    padding: 5px;
+    margin-top:10px;
+    background:#eee;
+    border-top: 1px solid #ccc;
+}
+.hov-title, .hov-desc {
+    font-size: 11px;
+}
+.hov-desc {
+    width: 99%;
+    height: 80px;
+}
+
+/* Facebox styles */
+
+#facebox .b {
+  background:url(assets/b.png);
+}
+
+#facebox .tl {
+  background:url(assets/tl.png);
+}
+
+#facebox .tr {
+  background:url(assets/tr.png);
+}
+
+#facebox .bl {
+  background:url(assets/bl.png);
+}
+
+#facebox .br {
+  background:url(assets/br.png);
+}
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+}
+
+#facebox .popup {
+  position: relative;
+}
+
+#facebox table {
+  border-collapse: collapse;
+}
+
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+#facebox .body {
+  padding: 10px;
+  background: #fff;
+  width: 500px;
+}
+
+#facebox .loading {
+  text-align: center;
+}
+
+#facebox .image {
+  text-align: center;
+}
+
+#facebox img {
+  border: 0;
+  margin: 0;
+}
+
+#facebox .footer {
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background: #000;
+  z-index: 99;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
