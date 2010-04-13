@@ -3,7 +3,7 @@
 Plugin Name: Hoverable
 Plugin URI: http://forumone.com/
 Description: Attach hoverable context to phrases within your posts.
-Version: 1.0.0
+Version: 1.0.1
 Author: Matt Gibbs
 Author URI: http://forumone.com/
 
@@ -104,9 +104,10 @@ jQuery(function() {
      * Combine hover_title and hover_desc into an associative array.
      * Then, save the array using update_post_meta. WP automagically
      * converts the array to a serialized string.
+     *
+     * Note: In WP < 3.0, global $post is unavailable
      */
-    function save_meta_box() {
-        global $post;
+    function save_meta_box($post_id) {
         $output = array();
         $hover_title = $_POST['hover_title'];
         $hover_desc = $_POST['hover_desc'];
@@ -115,8 +116,9 @@ jQuery(function() {
         for ($i = 1, $z = count($hover_title); $i < $z; $i++) {
             $output[] = array('hover_title' => $hover_title[$i], 'hover_desc' => $hover_desc[$i]);
         }
+
         // Save the array as postmeta
-        update_post_meta($post->ID, 'hoverable', $output);
+        update_post_meta($post_id, 'hoverable', $output);
     }
 
     /**
