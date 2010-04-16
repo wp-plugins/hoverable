@@ -3,7 +3,7 @@
 Plugin Name: Hoverable
 Plugin URI: http://forumone.com/
 Description: Attach hoverable context to phrases within your posts.
-Version: 1.0.1
+Version: 1.0.2
 Author: Matt Gibbs
 Author URI: http://forumone.com/
 
@@ -39,6 +39,7 @@ class Hoverable
      */
     function admin_init() {
         add_meta_box('hoverable', __('Add Hover Text', 'hoverable'), array($this, 'load_meta_box'), 'post', 'advanced');
+        add_meta_box('hoverable', __('Add Hover Text', 'hoverable'), array($this, 'load_meta_box'), 'page', 'advanced');
         add_action('save_post', array($this, 'save_meta_box'), 11, 2);
     }
 
@@ -127,7 +128,7 @@ jQuery(function() {
      * DIV that gets triggered by Facebox.
      */
     function the_content($content) {
-        if (is_single()) {
+        if (is_single() || is_page()) {
             global $post;
             $saved_data = get_post_meta($post->ID, 'hoverable', true);
 
