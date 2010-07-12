@@ -3,7 +3,7 @@
 Plugin Name: Hoverable
 Plugin URI: http://forumone.com/
 Description: Attach hoverable context to phrases within your posts.
-Version: 1.0.2
+Version: 1.0.3
 Author: Matt Gibbs
 Author URI: http://forumone.com/
 
@@ -132,11 +132,13 @@ jQuery(function() {
             global $post;
             $saved_data = get_post_meta($post->ID, 'hoverable', true);
 
-            foreach ($saved_data as $key => $item) {
-                $hover_title = $item['hover_title'];
-                $hover_desc = $item['hover_desc'];
-                $content = str_replace($hover_title, "<a href=\"#hov$key\" class=\"facebox\">$hover_title</a>", $content);
-                $hidden_divs[$key] = "<div id=\"hov$key\">$hover_desc</div>";
+            if (!empty($saved_data)) {
+                foreach ($saved_data as $key => $item) {
+                    $hover_title = $item['hover_title'];
+                    $hover_desc = $item['hover_desc'];
+                    $content = str_replace($hover_title, "<a href=\"#hov$key\" class=\"facebox\">$hover_title</a>", $content);
+                    $hidden_divs[$key] = "<div id=\"hov$key\">$hover_desc</div>";
+                }
             }
             if (isset($hidden_divs)) {
                 return $content . '<div class="hov-modal">' . implode('', $hidden_divs) . '</div>';
